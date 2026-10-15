@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#1d5a3f">
+<title>Fichas de Sinalização de Idosos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: coluna única de campo, abas no topo, barra de ação fixa no fundo (polegar) */
+:root{
+  --bg:#eef2ee; --surface:#ffffff; --ink:#17221c; --muted:#58675e; --line:#d3dcd5;
+  --accent:#1d5a3f; --accent-ink:#ffffff; --chip:#e6ede8; --chip-on:#1d5a3f; --warn:#a24d15; --warn-bg:#fbefe4;
+  --display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1411; --surface:#161f1a; --ink:#e5ece7; --muted:#97a69c; --line:#2a3630;
+  --accent:#5db487; --accent-ink:#08130d; --chip:#1e2923; --chip-on:#5db487; --warn:#eba06a; --warn-bg:#2b1e14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1411; --surface:#161f1a; --ink:#e5ece7; --muted:#97a69c; --line:#2a3630;
+  --accent:#5db487; --accent-ink:#08130d; --chip:#1e2923; --chip-on:#5db487; --warn:#eba06a; --warn-bg:#2b1e14; color-scheme:dark}
+*{box-sizing:border-box}
+html{color-scheme:light}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.4;padding:env(safe-area-inset-top,0px) 16px 120px}
+.wrap{max-width:640px;margin:0 auto}
+header.top{padding-block:18px 10px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-family:var(--display);font-weight:700;font-size:30px;margin:2px 0 0;letter-spacing:.01em;text-wrap:balance}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:8px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.tab{font:600 15px var(--body);padding:11px 8px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.tab small{display:block;font-weight:400;font-size:12px;opacity:.8}
+h2{font-family:var(--display);font-weight:600;font-size:19px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin:26px 0 8px;padding-bottom:4px;border-bottom:2px solid var(--line)}
+.fld{display:flex;flex-direction:column;gap:6px;margin:0 0 14px;min-width:0}
+.lb{font-weight:600;font-size:15px}
+.lb b{color:var(--warn);font-weight:700;margin-left:2px}
+.hint{font-size:13px;color:var(--muted)}
+input,textarea{font:16px var(--body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%;min-height:46px}
+textarea{min-height:110px;resize:vertical}
+input:focus,textarea:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.inwrap{display:flex;align-items:center;gap:8px}
+.suf{color:var(--muted);font-size:14px;white-space:nowrap}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row>.fld{margin-bottom:14px}
+@media (max-width:420px){.row.r-stack{grid-template-columns:1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips.stack{flex-direction:column}
+.chip{font:15px var(--body);color:var(--ink);background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:10px 16px;min-height:44px;cursor:pointer;text-align:left}
+.chips.stack .chip{border-radius:10px}
+.chip[aria-pressed="true"]{background:var(--chip-on);color:var(--accent-ink);border-color:var(--chip-on);font-weight:600}
+.gpsout{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.tbl{display:flex;flex-direction:column;gap:10px}
+.trow{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.trow .full{grid-column:1/-1}
+.trow label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted);min-width:0}
+.trow-h{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:14px}
+.link{background:none;border:0;color:var(--accent);font:600 14px var(--body);padding:6px 0;cursor:pointer}
+.btn{font:600 15px var(--body);border-radius:10px;padding:12px 16px;min-height:46px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.warn{background:var(--warn);color:#fff;border-color:var(--warn)}
+.copybox{background:var(--surface);border:1px dashed var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;margin-bottom:6px}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--surface);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}
+.bar .in{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:10px}
+.prog{flex:1;min-width:0;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.prog strong{display:block;color:var(--ink);font-size:15px}
+.sheet{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center}
+.sheet .card{background:var(--surface);color:var(--ink);width:100%;max-width:640px;border-radius:16px 16px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));max-height:80vh;overflow:auto}
+.sheet h3{font-family:var(--display);font-size:22px;margin:0 0 6px}
+.sheet ul{margin:8px 0 14px;padding-left:20px;color:var(--muted)}
+.sheet .acts{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.toast{position:fixed;left:16px;right:16px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:30;max-width:560px;margin:0 auto;background:var(--ink);color:var(--bg);padding:12px 14px;border-radius:10px;font-size:15px}
+.note{font-size:13px;color:var(--muted);margin:22px 0 0}
+@media (prefers-reduced-motion:no-preference){.chip,.tab{transition:background-color .12s,color .12s}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">GNR · Secção de Programas Especiais</div>
+    <h1>Fichas de Sinalização de Idosos</h1>
+  </header>
+  <div class="tabs" role="tablist">
+    <button class="tab" id="tab-registo" role="tab" data-tab="registo" aria-selected="true">Ficha de Registo<small>Idosos em Segurança</small></button>
+    <button class="tab" id="tab-residencia" role="tab" data-tab="residencia" aria-selected="false">Ficha de Residência<small>Questionário</small></button>
+  </div>
+  <form id="panel-registo" class="panel" autocomplete="off"></form>
+  <form id="panel-residencia" class="panel" autocomplete="off" hidden></form>
+  <p class="note">Os dados ficam apenas neste telemóvel (rascunho guardado automaticamente) até exportar o PDF.</p>
+</div>
+
+<datalist id="freguesias">
+  <option value="Carregosa"></option><option value="Cesar"></option><option value="Cucujães"></option>
+  <option value="Fajões"></option><option value="Loureiro"></option><option value="Macieira de Sarnes"></option>
+  <option value="Ossela"></option><option value="São Martinho da Gândara"></option><option value="São Roque"></option>
+  <option value="U.F. Nogueira do Cravo e Pindelo"></option>
+  <option value="U.F. Oliveira de Azeméis, Santiago de Riba-Ul, Ul, Macinhata da Seixa e Madail"></option>
+  <option value="U.F. Pinheiro da Bemposta, Travanca e Palmaz"></option>
+</datalist>
+
+<div class="bar"><div class="in">
+  <div class="prog" id="prog"><strong>—</strong>campos obrigatórios</div>
+  <button class="btn" id="btnClear" type="button">Limpar</button>
+  <button class="btn primary" id="btnExport" type="button">Exportar PDF</button>
+</div></div>
+
+<div class="sheet" id="sheet" hidden><div class="card" id="sheetCard"></div></div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(function(){
+const p2=n=>String(n).padStart(2,'0');
+const now=new Date();
+const TODAY=now.getFullYear()+'-'+p2(now.getMonth()+1)+'-'+p2(now.getDate());
+const YEAR=String(now.getFullYear());
+const MESES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- definição dos campos ---------- */
+const T=(id,label,o={})=>({type:'text',id,label,...o});
+const N=(id,label,o={})=>({type:'num',id,label,...o});
+const D=(id,label,o={})=>({type:'date',id,label,...o});
+const ch=(id,label,opts,o={})=>({type:'chips',id,label,opts,...o});
+const mu=(id,label,opts,o={})=>({type:'multi',id,label,opts,...o});
+const yn=(id,label,req,o={})=>ch(id,label,['Sim','Não'],{req,...o});
+let rc=0; const R=(fields,o={})=>({type:'row',id:'row'+(rc++),fields,...o});
+const S=(title,o={})=>({type:'sec',title,...o});
+
+const pessoais=()=>[
+  S('Dados pessoais'),
+  T('nome','Nome',{auto:'name'}),
+  ch('sexo','Sexo',['M','F'],{req:1}),
+  ch('estadoCivil','Estado civil',['Solteiro/a','Casado/a','União de facto','Divorciado/a','Viúvo/a'],{pdfText:1}),
+  R([D('nasc','Data de nascimento'),N('idade','Idade',{req:1,suffix:'anos',mode:'numeric'})]),
+  S('Morada'),
+  T('morada','Morada'),
+  R([T('cp','Código postal',{ph:'3720-000',mode:'numeric'}),T('localidade','Localidade')],{stack:1}),
+  T('freguesia','Freguesia',{req:1,list:'freguesias'}),
+  R([T('concelho','Concelho',{req:1,def:'Oliveira de Azeméis'}),T('distrito','Distrito',{req:1,def:'Aveiro'})],{stack:1}),
+  {type:'gps',id:'gps',label:'Coordenadas GPS',req:1},
+];
+const PESSOAIS_IDS=['nome','sexo','estadoCivil','nasc','idade','morada','cp','localidade','freguesia','concelho','distrito','gps'];
+const identif=(numF)=>[
+  S('Identificação da ficha',{pdf:0}),
+  T('destacamento','Destacamento Territorial de',{def:'Oliveira de Azeméis',pdf:0}),
+  numF,
+  T('codigo','Código da pessoa no registo',{hint:'Preencher apenas aquando da introdução dos dados',pdf:0}),
+];
+const famCols=[{k:'nome',l:'Nome',w:3,full:1},{k:'grau',l:'Grau de parentesco',w:1.5},{k:'idade',l:'Idade',w:.7,mode:'numeric'},{k:'prof',l:'Actividade profissional',w:1.7}];
+
+const FORMS={
+ registo:{
+  name:'Ficha de Registo', file:'Ficha_Registo',
+  sub:'SECÇÃO DE PROGRAMAS ESPECIAIS / NÚCLEO IDOSOS EM SEGURANÇA',
+  title:s=>`FICHA DE REGISTO N.º ${s.fichaNum||'____'}/${s.fichaAno||'____'}`,
+  fields:[
+   ...identif(R([N('fichaNum','Ficha de registo n.º',{mode:'numeric',pdf:0}),N('fichaAno','Ano',{def:YEAR,mode:'numeric',pdf:0})],{pdf:0})),
+   ...pessoais(),
+   yn('temTelefone','Tem telefone?',1),
+   T('telefone','Número de telefone',{mode:'tel',when:['temTelefone','Sim']}),
+   S('Agregado familiar'),
+   yn('viveSozinho','Vive sozinho?',1),
+   {type:'table',id:'agregado',label:'Composição do agregado familiar',when:['viveSozinho','Não'],cols:famCols},
+   {type:'table',id:'familiares',label:'Familiares existentes',when:['viveSozinho','Sim'],cols:[...famCols,{k:'dist',l:'Distância da localidade onde vive',w:1.6}]},
+   yn('viveIsolado','Vive isolado?',1),
+   R([N('distLoc','Distância da localidade mais próxima',{suffix:'km',mode:'decimal'}),T('distLocQual','Qual?')]),
+   R([N('distPosto','Distância da localidade mais próxima com posto policial',{suffix:'km',mode:'decimal'}),T('distPostoQual','Qual?')]),
+   S('Alojamento e situação profissional'),
+   ch('alojamento','Tipo de alojamento',['Andar/Apartamento','Moradia','Outro'],{req:1}),
+   T('alojamentoOutro','Outro – qual?',{when:['alojamento','Outro']}),
+   ch('situacao','Situação profissional',['Ainda no activo','Desempregado/a','Reformado/a','Doméstica'],{req:1}),
+   T('profissao','Profissão',{when:['situacao','Ainda no activo']}),
+   S('Estado de saúde e nível de autonomia'),
+   ch('autonomia','Nível de autonomia',[
+     'Depende totalmente de terceiros, mesmo nas actividades básicas (levantar, vestir, comer, cozinhar, etc.).',
+     'Consegue tomar conta de si próprio, mas depende de terceiros para outras actividades (deslocações à rua).',
+     'Não depende habitualmente de terceiros, no entanto executa as tarefas com dificuldade.',
+     'Não depende habitualmente de terceiros para a realização de qualquer tipo de tarefa pessoal ou doméstica.'],{req:1,stack:1}),
+   R([N('distCS','Distância do Centro de Saúde',{suffix:'km',mode:'decimal'}),T('distCSQual','Qual?')]),
+   yn('medico','Tem médico de família?',1),
+   S('Apoio'),
+   yn('recebeApoio','Recebe apoio?',1),
+   mu('apoioDe','Se sim, de quem?',['Centro de dia','Apoio domiciliário','Apoio de IPSS','Da família','Teleassistência para idosos','Outro'],{when:['recebeApoio','Sim']}),
+   T('apoioDeOutro','Outro – qual?',{when:['apoioDe','Outro']}),
+   ch('regularidade','Qual a regularidade desse apoio',['Todos os dias','1 a 3 vezes por semana','1 a 2 vezes por mês','Não tem regularidade'],{when:['recebeApoio','Sim']}),
+   mu('apoioRecebido','Apoio recebido',['Refeições cozinhadas','Alimentos frescos','Roupas','Transporte','Apoio nas tarefas domésticas (higiene, cozinhar, limpeza, etc.)','Outros'],{when:['recebeApoio','Sim']}),
+   T('apoioRecebidoOutro','Outros – qual?',{when:['apoioRecebido','Outros']}),
+   S('Sinalização'),
+   yn('sinalizado','O idoso foi sinalizado?',1),
+   mu('sinalizadoA','Se sim, a quem?',['Santa Casa da Misericórdia','Segurança Social','Serviço Social da Câmara Municipal/Freguesia','Centro Comunitário/IPSS','Centro de Saúde/Hospital','Outro'],{when:['sinalizado','Sim']}),
+   T('sinalizadoOutro','Outro – qual?',{when:['sinalizadoA','Outro']}),
+   T('fichaSinal','Foi elaborada Ficha de Sinalização n.º',{when:['sinalizado','Sim']}),
+   S('Observações'),
+   {type:'area',id:'obs',label:'Observações',hint:'O que lhe parecer importante para complementar a ficha'},
+   D('dataRecolha','Dados recolhidos em',{def:TODAY,long:1}),
+  ]},
+ residencia:{
+  name:'Ficha de Residência', file:'Ficha_Residencia',
+  sub:'SECÇÃO DE PROGRAMAS ESPECIAIS',
+  title:()=>'FICHA DE RESIDÊNCIA',
+  right:s=>`RESIDÊNCIA N.º* ${s.resNum||'___'}/${s.resAno||'___'}`,
+  fields:[
+   ...identif(R([N('resNum','Residência n.º',{req:1,mode:'numeric',pdf:0}),N('resAno','Ano',{def:YEAR,mode:'numeric',pdf:0})],{pdf:0})),
+   {type:'copy',id:'copy'},
+   ...pessoais(),
+   yn('temFichaRegisto','Ficha de Registo (Censos Sénior)',1),
+   R([N('fichaNum','N.º da ficha',{mode:'numeric'}),N('fichaAno','Ano',{mode:'numeric'})],{when:['temFichaRegisto','Sim']}),
+   S('Questionário'),
+   N('q1','1. Quantas pessoas moram em casa?',{req:1,mode:'numeric'}),
+   T('q2','2. Quanto tempo está fora de casa, durante o ano?'),
+   yn('q3','3. Quando se ausenta, informa a GNR ou alguém?',1),
+   yn('q4','4. Tem alarme?',1),
+   T('q4b','Ligado à companhia de segurança?',{when:['q4','Sim'],ph:'Empresa, ou "Não"'}),
+   yn('q5','5. Tem câmaras de videovigilância?',1),
+   yn('q6','6. Tem cães?',1),
+   yn('q7','7. Tem o hábito de passear o cão ou fazer algo à mesma hora todos os dias?'),
+   yn('q8','8. Tem o número do Posto da GNR da área de residência para utilizar?',1),
+   T('q9','9. Já foi alvo de furto/roubo? (data)',{req:1,ph:'"Não" ou data'}),
+   yn('q10','10. Quando se ausenta de férias contacta a GNR (Verão Seguro – Chave Direta)?',1),
+   D('dataRecolha','Dados recolhidos em',{def:TODAY,long:1}),
+  ]}
+};
+// índice id -> definição, por ficha
+for(const fk in FORMS){const idx={};const walk=a=>a.forEach(f=>{if(f.id)idx[f.id]=f;if(f.fields)walk(f.fields)});walk(FORMS[fk].fields);FORMS[fk].idx=idx}
+
+/* ---------- estado ---------- */
+const KEY='fichas-gnr-v1';
+let state={registo:{},residencia:{}};
+try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.registo)state=s}catch(e){}
+function applyDefaults(fk){const s=state[fk];for(const id in FORMS[fk].idx){const f=FORMS[fk].idx[id];if(f.def!==undefined&&s[id]===undefined)s[id]=f.def;if(f.type==='table'&&!Array.isArray(s[id]))s[id]=[{}]}}
+applyDefaults('registo');applyDefaults('residencia');
+let saveT;function save(){clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}},300)}
+
+const has=(v)=>Array.isArray(v)?v.length>0:(v!==undefined&&v!==null&&String(v).trim()!=='');
+function visible(fk,f){
+  if(!f.when)return true;
+  const [pid,val]=f.when;const pf=FORMS[fk].idx[pid];
+  if(pf&&!visible(fk,pf))return false;
+  const v=state[fk][pid];
+  return Array.isArray(v)?v.includes(val):v===val;
+}
+function parseGps(str){
+  const m=String(str||'').match(/-?\d{1,3}[.,]\d+/g);
+  if(!m||m.length<2)return null;
+  const lat=parseFloat(m[0].replace(',','.')),lon=parseFloat(m[1].replace(',','.'));
+  if(isNaN(lat)||isNaN(lon)||Math.abs(lat)>90||Math.abs(lon)>180)return null;
+  return {lat,lon};
+}
+function dm(v){const a=Math.abs(v);const d=Math.floor(a);const m=(a-d)*60;return d+'°'+m.toFixed(3).padStart(6,'0')+"'"}
+function gpsText(g){return `N ${dm(g.lat)}   ${g.lon<0?'W':'E'} ${dm(g.lon)}   (${g.lat.toFixed(5)}, ${g.lon.toFixed(5)})`}
+
+/* ---------- interface ---------- */
+function fieldHTML(fk,f){
+  const s=state[fk],v=s[f.id];const req=f.req?'<b>*</b>':'';
+  const wrapAttr=`data-fid="${f.id}"`;
+  const fid=`${fk}-${f.id}`;
+  switch(f.type){
+   case 'sec':return `<h2>${esc(f.title)}</h2>`;
+   case 'row':return `<div class="row${f.stack?' r-stack':''}" ${wrapAttr}>${f.fields.map(x=>fieldHTML(fk,x)).join('')}</div>`;
+   case 'text':case 'num':case 'date':{
+     const type=f.type==='date'?'date':(f.mode==='tel'?'tel':'text');
+     const im=f.mode?` inputmode="${f.mode==='tel'?'tel':f.mode}"`:'';
+     return `<div class="fld" ${wrapAttr}><label class="lb" for="${fid}">${esc(f.label)}${req}</label>
+       <div class="inwrap"><input id="${fid}" data-k="${f.id}" type="${type}"${im} value="${esc(v)}"${f.ph?` placeholder="${esc(f.ph)}"`:''}${f.list?` list="${f.list}"`:''}>${f.suffix?`<span class="suf">${f.suffix}</span>`:''}</div>
+       ${f.hint?`<span class="hint">${esc(f.hint)}</span>`:''}</div>`;}
+   case 'area':return `<div class="fld" ${wrapAttr}><label class="lb" for="${fid}">${esc(f.label)}</label>${f.hint?`<span class="hint">${esc(f.hint)}</span>`:''}<textarea id="${fid}" data-k="${f.id}">${esc(v)}</textarea></div>`;
+   case 'chips':case 'multi':{
+     const multi=f.type==='multi';const arr=multi?(v||[]):[v];
+     return `<div class="fld" ${wrapAttr}><span class="lb" id="${fid}-l">${esc(f.label)}${req}</span>${multi?'<span class="hint">Pode escolher mais do que um</span>':''}
+       <div class="chips${f.stack?' stack':''}" role="group" aria-labelledby="${fid}-l">${f.opts.map(o=>`<button type="button" class="chip" data-chip="${f.id}" data-v="${esc(o)}" aria-pressed="${arr.includes(o)}">${esc(o)}</button>`).join('')}</div></div>`;}
+   case 'gps':{const g=parseGps(v);
+     return `<div class="fld" ${wrapAttr}><label class="lb" for="${fid}">${esc(f.label)}${req}</label>
+       <input id="${fid}" data-k="${f.id}" type="text" inputmode="text" placeholder="40.84012, -8.47730" value="${esc(v)}">
+       <button type="button" class="btn primary" data-geo="1">📍 Usar localização atual</button>
+       <span class="hint">Ou, no Google Maps, toque longo no local, copie as coordenadas e cole aqui.</span>
+       <span class="gpsout" data-gpsout>${g?esc(gpsText(g)):''}</span></div>`;}
+   case 'table':return `<div class="fld" ${wrapAttr}><span class="lb">${esc(f.label)}</span><div class="tbl" data-tbl="${f.id}">${tableRows(fk,f)}</div><button type="button" class="link" data-add="${f.id}">+ Adicionar pessoa</button></div>`;
+   case 'copy':return `<div class="copybox" ${wrapAttr}><span class="hint">Já preencheu a Ficha de Registo desta pessoa?</span><button type="button" class="btn" data-copy="1">Copiar dados pessoais da Ficha de Registo</button></div>`;
+  }
+  return '';
+}
+function tableRows(fk,f){
+  const rows=state[fk][f.id]||[];
+  return rows.map((r,i)=>`<div class="trow"><div class="trow-h">Pessoa ${i+1}${rows.length>1?`<button type="button" class="link" data-del="${f.id}" data-r="${i}">Remover</button>`:''}</div>
+    ${f.cols.map(c=>`<label class="${c.full?'full':''}">${esc(c.l)}<input id="${fk}-${f.id}-${i}-${c.k}" data-t="${f.id}" data-r="${i}" data-c="${c.k}" type="text"${c.mode?` inputmode="${c.mode}"`:''} value="${esc(r[c.k])}"></label>`).join('')}</div>`).join('');
+}
+function render(fk){
+  const el=document.getElementById('panel-'+fk);
+  el.innerHTML=FORMS[fk].fields.map(f=>fieldHTML(fk,f)).join('');
+  refresh(fk);
+}
+function refresh(fk){
+  const el=document.getElementById('panel-'+fk);
+  el.querySelectorAll('[data-fid]').forEach(w=>{const f=FORMS[fk].idx[w.dataset.fid];if(f)w.hidden=!visible(fk,f)});
+  if(fk===cur)progress();
+}
+function reqList(fk){
+  const out=[];const s=state[fk];
+  const walk=a=>a.forEach(f=>{if(!visible(fk,f))return;if(f.fields)return walk(f.fields);
+    if(f.req){const ok=f.type==='gps'?!!parseGps(s[f.id]):has(s[f.id]);out.push({f,ok})}});
+  walk(FORMS[fk].fields);return out;
+}
+function progress(){
+  const l=reqList(cur);const done=l.filter(x=>x.ok).length;
+  document.getElementById('prog').innerHTML=`<strong>${done} de ${l.length}</strong>campos obrigatórios`;
+}
+function setVal(fk,k,v){state[fk][k]=v;save();}
+function calcAge(iso){if(!iso)return '';const b=new Date(iso+'T00:00');if(isNaN(b))return '';let a=now.getFullYear()-b.getFullYear();const m=now.getMonth()-b.getMonth();if(m<0||(m===0&&now.getDate()<b.getDate()))a--;return a>=0&&a<130?String(a):''}
+
+let cur='registo';
+for(const fk of ['registo','residencia']){
+  const el=document.getElementById('panel-'+fk);
+  el.addEventListener('submit',e=>e.preventDefault());
+  el.addEventListener('input',e=>{
+    const t=e.target;
+    if(t.dataset.k){
+      setVal(fk,t.dataset.k,t.value);
+      if(t.dataset.k==='nasc'){const a=calcAge(t.value);if(a){setVal(fk,'idade',a);const ia=document.getElementById(fk+'-idade');if(ia)ia.value=a}}
+      if(t.dataset.k==='gps'){const g=parseGps(t.value);t.parentElement.querySelector('[data-gpsout]').textContent=g?gpsText(g):(t.value.trim()?'Formato não reconhecido. Use: 40.84012, -8.47730':'')}
+      refresh(fk);
+    } else if(t.dataset.t){
+      const rows=state[fk][t.dataset.t];rows[+t.dataset.r][t.dataset.c]=t.value;save();
+    }
+  });
+  el.addEventListener('click',e=>{
+    const b=e.target.closest('button');if(!b)return;
+    if(b.dataset.chip){
+      const f=FORMS[fk].idx[b.dataset.chip];const v=b.dataset.v;
+      if(f.type==='multi'){const a=new Set(state[fk][f.id]||[]);a.has(v)?a.delete(v):a.add(v);setVal(fk,f.id,f.opts.filter(o=>a.has(o)));}
+      else setVal(fk,f.id,state[fk][f.id]===v?'':v);
+      const sel=state[fk][f.id];
+      b.parentElement.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',Array.isArray(sel)?sel.includes(c.dataset.v):sel===c.dataset.v));
+      refresh(fk);
+    } else if(b.dataset.add){
+      state[fk][b.dataset.add].push({});save();
+      const f=FORMS[fk].idx[b.dataset.add];el.querySelector(`[data-tbl="${f.id}"]`).innerHTML=tableRows(fk,f);
+    } else if(b.dataset.del){
+      state[fk][b.dataset.del].splice(+b.dataset.r,1);save();
+      const f=FORMS[fk].idx[b.dataset.del];el.querySelector(`[data-tbl="${f.id}"]`).innerHTML=tableRows(fk,f);
+    } else if(b.dataset.geo){
+      const inp=document.getElementById(fk+'-gps');const out=inp.parentElement.querySelector('[data-gpsout]');
+      if(!navigator.geolocation){toast('Este browser não permite obter a localização.');return}
+      b.disabled=true;const lbl=b.textContent;b.textContent='A obter localização…';
+      navigator.geolocation.getCurrentPosition(pos=>{
+        const {latitude:la,longitude:lo,accuracy:ac}=pos.coords;
+        const v=la.toFixed(6)+', '+lo.toFixed(6);inp.value=v;setVal(fk,'gps',v);
+        out.textContent=gpsText({lat:la,lon:lo})+'  ·  precisão ±'+Math.round(ac)+' m';
+        b.disabled=false;b.textContent=lbl;refresh(fk);
+        if(ac>50)toast('Precisão baixa (±'+Math.round(ac)+' m). Ative o GPS e, se possível, tente ao ar livre.');
+      },err=>{
+        b.disabled=false;b.textContent=lbl;
+        toast(err.code===1?'Sem permissão de localização. Autorize a localização para este site nas definições do browser.':
+              err.code===3?'A localização demorou demasiado. Verifique se o GPS está ligado e tente de novo.':
+              'Não foi possível obter a localização. Verifique se o GPS está ligado.');
+      },{enableHighAccuracy:true,timeout:20000,maximumAge:0});
+    } else if(b.dataset.copy){
+      const r=state.registo,s=state.residencia;
+      PESSOAIS_IDS.forEach(k=>{if(has(r[k]))s[k]=r[k]});
+      if(has(r.codigo))s.codigo=r.codigo;
+      if(has(r.fichaNum)){s.temFichaRegisto='Sim';s.fichaNum=r.fichaNum;s.fichaAno=r.fichaAno}
+      save();render('residencia');toast('Dados pessoais copiados da Ficha de Registo.');
+    }
+  });
+}
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  cur=t.dataset.tab;
+  document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',x===t));
+  document.getElementById('panel-registo').hidden=cur!=='registo';
+  document.getElementById('panel-residencia').hidden=cur!=='residencia';
+  try{localStorage.setItem(KEY+'-tab',cur)}catch(e){}
+  progress();window.scrollTo(0,0);
+}));
+
+/* ---------- avisos ---------- */
+let toastT;function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>t.hidden=true,4000)}
+const sheet=document.getElementById('sheet'),card=document.getElementById('sheetCard');
+function openSheet(html,handlers){card.innerHTML=html;sheet.hidden=false;card.querySelectorAll('[data-act]').forEach(b=>b.onclick=()=>{sheet.hidden=true;handlers[b.dataset.act]&&handlers[b.dataset.act]()})}
+sheet.addEventListener('click',e=>{if(e.target===sheet)sheet.hidden=true});
+
+document.getElementById('btnClear').onclick=()=>openSheet(
+  `<h3>Limpar a ${FORMS[cur].name}?</h3><p>Todos os dados desta ficha são apagados deste telemóvel. Exporte o PDF antes, se ainda não o fez.</p>
+   <div class="acts"><button class="btn" data-act="no">Cancelar</button><button class="btn warn" data-act="yes">Limpar ficha</button></div>`,
+  {yes:()=>{state[cur]={};applyDefaults(cur);save();render(cur);window.scrollTo(0,0);toast('Ficha limpa.')}});
+
+document.getElementById('btnExport').onclick=()=>{
+  const miss=reqList(cur).filter(x=>!x.ok);
+  if(miss.length){
+    openSheet(`<h3>Faltam ${miss.length} campo${miss.length>1?'s':''} obrigatório${miss.length>1?'s':''}</h3>
+      <ul>${miss.map(m=>`<li>${esc(m.f.label.replace(/^\d+\.\s*/,''))}</li>`).join('')}</ul>
+      <div class="acts"><button class="btn" data-act="back">Voltar à ficha</button><button class="btn primary" data-act="go">Exportar assim</button></div>`,
+      {go:doExport,back:()=>{const f=miss[0].f;const w=document.querySelector(`#panel-${cur} [data-fid="${f.id}"]`);w&&w.scrollIntoView({block:'center',behavior:'smooth'})}});
+  } else doExport();
+};
+
+/* ---------- PDF ---------- */
+function fmtDate(iso,long){if(!iso)return '';const [y,m,d]=iso.split('-');return long?`${+d} de ${MESES[+m-1]} de ${y}`:`${d}/${m}/${y}`}
+function buildPDF(fk){
+  const {jsPDF}=window.jspdf;const doc=new jsPDF({unit:'mm',format:'a4'});
+  const F=FORMS[fk],s=state[fk];const M=16,W=210-2*M,BOT=278;let y=0;
+  const LH=5.4;
+  function newPage(){doc.addPage();y=20}
+  function ensure(h){if(y+h>BOT)newPage()}
+  doc.setTextColor(0);doc.setDrawColor(0);
+  // cabeçalho
+  y=22;
+  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.text('S.  R.',105,y,{align:'center'});y+=5;
+  doc.setFontSize(11);doc.text('MINISTÉRIO DA ADMINISTRAÇÃO INTERNA',105,y,{align:'center'});y+=5;
+  doc.text('GUARDA NACIONAL REPUBLICANA',105,y,{align:'center'});y+=9;
+  doc.setFont('helvetica','bold');doc.setFontSize(12);
+  doc.text('DESTACAMENTO TERRITORIAL DE '+(s.destacamento||'________________').toUpperCase(),105,y,{align:'center'});y+=5.5;
+  doc.setFontSize(10);doc.text(F.sub,105,y,{align:'center'});y+=7;
+  if(F.right){doc.setFontSize(10.5);doc.text(F.right(s),M+W,y,{align:'right'});y+=7}
+  doc.setFontSize(13);doc.text(F.title(s),105,y,{align:'center'});y+=6;
+  doc.setFont('helvetica','normal');doc.setFontSize(9.5);
+  doc.text('Código da Pessoa no Registo: '+(s.codigo||'________________')+'   (Preencher apenas aquando da Introdução dos Dados)',105,y,{align:'center'});y+=9;
+  doc.setFontSize(10);
+
+  function flow(segs){
+    let x=M;ensure(LH);
+    for(const sg of segs){
+      if(sg.box!==undefined){
+        if(x+4>M+W){x=M;y+=LH;ensure(LH)}
+        doc.setLineWidth(.25);doc.rect(x,y-3.1,3.3,3.3);
+        if(sg.box){doc.setLineWidth(.45);doc.line(x+.5,y-2.6,x+2.8,y-.3);doc.line(x+2.8,y-2.6,x+.5,y-.3)}
+        x+=4.6;continue;
+      }
+      doc.setFont('helvetica',sg.b?'bold':'normal');
+      for(const wd of String(sg.t).split(/(\s+)/)){
+        if(!wd)continue;const ww=doc.getTextWidth(wd);
+        if(x+ww>M+W&&wd.trim()){x=M;y+=LH;ensure(LH)}
+        if(x===M&&!wd.trim())continue;
+        doc.text(wd,x,y);x+=ww;
+      }
+    }
+    y+=LH+1.4;
+  }
+  const blank='____________';
+  function segsFor(f){
+    const v=s[f.id];const lab=f.label+(f.req?'*':'')+': ';
+    switch(f.type){
+      case 'text':return [{t:lab,b:1},{t:has(v)?v:blank}];
+      case 'num':return [{t:lab,b:1},{t:has(v)?v:'______'},{t:f.suffix?' '+f.suffix:''}];
+      case 'date':return [{t:lab,b:1},{t:has(v)?fmtDate(v,f.long):'____/____/______'}];
+      case 'chips':case 'multi':{
+        if(f.pdfText)return [{t:lab,b:1},{t:has(v)?v:blank}];
+        const sel=Array.isArray(v)?v:[v];const out=[{t:lab,b:1}];
+        f.opts.forEach((o,i)=>{out.push({t:(i?'    ':'')+o+': '});out.push({box:sel.includes(o)})});
+        return out;}
+      case 'gps':{const g=parseGps(v);return [{t:lab,b:1},{t:g?gpsText(g):'N ___°______   W ___°______'}];}
+    }
+    return [];
+  }
+  function table(f){
+    const rows=(s[f.id]||[]).filter(r=>Object.values(r).some(x=>has(x)));
+    while(rows.length<3)rows.push({});
+    const tw=f.cols.reduce((a,c)=>a+c.w,0);const ws=f.cols.map(c=>c.w/tw*W);
+    doc.setFontSize(9);
+    const drawRow=(cells,bold)=>{
+      doc.setFont('helvetica',bold?'bold':'normal');
+      const lines=cells.map((c,i)=>doc.splitTextToSize(String(c||''),ws[i]-3));
+      const h=Math.max(7,Math.max(...lines.map(l=>l.length))*4+3);
+      ensure(h);let x=M;
+      lines.forEach((l,i)=>{doc.setLineWidth(.25);doc.rect(x,y,ws[i],h);doc.text(l,x+1.5,y+4.6);x+=ws[i]});
+      y+=h;
+    };
+    flow([{t:f.label+':',b:1}]);y-=2;
+    drawRow(f.cols.map(c=>c.l),1);
+    rows.forEach(r=>drawRow(f.cols.map(c=>r[c.k]||'')));
+    doc.setFontSize(10);y+=5;
+  }
+  for(const f of F.fields){
+    if(f.pdf===0||!visible(fk,f))continue;
+    if(f.type==='sec'){ensure(14);y+=1.5;doc.setFillColor(232,236,233);doc.rect(M,y-4.2,W,6.2,'F');doc.setFont('helvetica','bold');doc.text(f.title.toUpperCase(),M+2,y);y+=LH+1.6;continue}
+    if(f.type==='copy')continue;
+    if(f.type==='row'){const segs=[];f.fields.forEach((x,i)=>{if(x.pdf===0)return;if(i&&segs.length)segs.push({t:'      '});segs.push(...segsFor(x))});flow(segs);continue}
+    if(f.type==='table'){table(f);continue}
+    if(f.type==='area'){
+      flow([{t:'Observações ',b:1},{t:'('+f.hint+')'}]);y-=1;
+      doc.setFont('helvetica','normal');
+      const lines=has(s[f.id])?doc.splitTextToSize(s[f.id],W):[];
+      lines.forEach(l=>{ensure(LH);doc.text(l,M,y);y+=LH});
+      if(!lines.length){for(let i=0;i<2;i++){ensure(8);y+=6;doc.setLineWidth(.2);doc.line(M,y,M+W,y)}y+=4}
+      y+=2;continue;
+    }
+    if(f.id==='dataRecolha'){ensure(18);doc.setFont('helvetica','normal');doc.setFontSize(9);doc.text('* Campos de preenchimento obrigatório.',M,y);y+=9;doc.setFontSize(10)}
+    if(f.stack){flow([{t:f.label+(f.req?'*':'')+':',b:1}]);y-=1.5;const v=s[f.id];f.opts.forEach(o=>flow([{box:v===o},{t:o}]));continue}
+    flow(segsFor(f));
+  }
+  const n=doc.getNumberOfPages();
+  for(let i=1;i<=n;i++){doc.setPage(i);doc.setFont('helvetica','bold');doc.setFontSize(9);doc.text('RESERVADO',105,11,{align:'center'});doc.text('RESERVADO',105,289,{align:'center'});
+    doc.setFont('helvetica','normal');doc.setFontSize(8);doc.text(`${F.name} · página ${i}/${n}`,M+W,289,{align:'right'})}
+  return doc;
+}
+async function doExport(){
+  if(!window.jspdf){toast('O gerador de PDF ainda não carregou. Verifique a ligação à internet e tente de novo.');return}
+  const s=state[cur];
+  const nome=(s.nome||'sem_nome').trim().replace(/[\\/:*?"<>|]+/g,'').replace(/\s+/g,'_').slice(0,60);
+  const filename=`${FORMS[cur].file}_${nome}_${(s.dataRecolha||TODAY)}.pdf`;
+  let doc;
+  try{doc=buildPDF(cur)}catch(e){toast('Não foi possível gerar o PDF.');return}
+  const file=new File([doc.output('blob')],filename,{type:'application/pdf'});
+  if(navigator.canShare&&navigator.canShare({files:[file]})){
+    try{await navigator.share({files:[file],title:filename});toast('PDF partilhado.');return}
+    catch(e){if(e&&e.name==='AbortError'){toast('Partilha cancelada.');return}}
+  }
+  doc.save(filename);
+  toast('PDF guardado nas Transferências.');
+}
+/* ---------- arranque ---------- */
+render('registo');render('residencia');
+try{const t=localStorage.getItem(KEY+'-tab');if(t==='residencia')document.getElementById('tab-residencia').click()}catch(e){}
+progress();
+})();
+</script>
+</body>
+</html>
