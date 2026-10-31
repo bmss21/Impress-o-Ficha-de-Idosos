@@ -109,7 +109,8 @@ input:focus,textarea:focus,button:focus-visible{outline:2px solid var(--accent);
 <div class="sheet" id="sheet" hidden><div class="card" id="sheetCard"></div></div>
 <div class="toast" id="toast" hidden></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- jsPDF 4.2.1: as versões 2.x e 3.x têm vulnerabilidades publicadas (ver propostas/README.md) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/4.2.1/jspdf.umd.min.js" integrity="sha384-qovJwSBbRDPP5cEjCp8S0UP66wrvnjaa60XMOGzTNanrThcrGfXfnZkvgY8N1KT3" crossorigin="anonymous"></script>
 <script>
 (function(){
 const p2=n=>String(n).padStart(2,'0');
